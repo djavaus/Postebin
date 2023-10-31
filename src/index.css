@@ -1,0 +1,22 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  width: 1230px;
+  padding: 0 15px;
+  margin: 0 auto;
+}
+
+button {
+  border: none;
+  background-color: transparent;
+  font-family: inherit;
+}
+
+/* font-family: 'Indie Flower', cursive; для подписей подсказок
+font-family: 'Lato', sans-serif; основной обычный
+font-family: 'Rowdies', sans-serif; лого
+font-family: 'Sometype Mono', monospace; * для заголовков */

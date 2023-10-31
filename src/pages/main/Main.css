@@ -1,0 +1,57 @@
+.main__wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    place-items: center;
+    padding: 65px 0;
+}
+
+.main__text {
+    display: flex;
+    flex-direction: column;
+    max-width: 350px;
+}
+
+.main__title {
+    font-family: 'Lato', sans-serif;
+    font-weight: 900;
+    font-size: 45px;
+}
+
+.main__btn {
+    font-family: 'Sometype Mono', monospace;
+    background-color: #000000;
+    color: #ffffff;
+    width: 250px;
+    font-size: 18px;
+    padding: 10px 20px;
+    border-radius: 10px;
+    margin: 25px 0;
+}
+
+.main__btn:hover {
+    border: 1px solid black;
+    color: #000000;
+    background-color: #ffffff;
+    cursor: pointer;
+}
+
+.main__signin {
+    font-family: 'Lato', sans-serif;
+    font-size: 18px;
+    color: #46474e;
+}
+
+.main__signin:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.main__img {
+    width: 400px;
+}
+
+.main__img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
