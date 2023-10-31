@@ -1,9 +1,9 @@
-import registratio_img from "./registration_img.png"
-import "./Registration.css"
-import reg_close from './reg_close.png'
+import auth_img from "./auth_img.png"
+import "./Auth.css"
+import auth_close from './auth_close.png'
 import { useForm } from "react-hook-form"
 
-export const Registration = () => {
+export const Auth = () => {
     const {
         register,
         handleSubmit,
@@ -16,35 +16,35 @@ export const Registration = () => {
     console.log(watch("example")) // watch input value by passing the name of it
 
     return (
-        <div className="registration">
-            <div className="registration__wrapper">
-                <div className="registration__close">
-                    <img src={reg_close} />
+        <div className="auth">
+            <div className="auth__wrapper">
+                <div className="auth__close">
+                    <img src={auth_close} />
                 </div>
-                <div className="registration__img">
-                    <img src={registratio_img} />
+                <div className="auth__img">
+                    <img src={auth_img} />
                 </div>
-                <h2 className="registration__title">Registration</h2>
+                <h2 className="auth__title">Welcome back!</h2>
                 <div >
-                    <form className="registration__form"
+                    <form className="auth__form"
                         onSubmit={handleSubmit(onSubmit)}>
 
-                        <input className="registration__inp"
+                        <input className="auth__inp"
                             placeholder="Enter your username"
                             {...register("username", { required: true })}
                             aria-invalid={errors.username ? "true" : "false"}
                         />
                         {errors.username?.type === "required" && (
-                            <p className="registration__error" role="alert">Username name is required</p>
+                            <p className="auth__error" role="alert">Username name is required</p>
                         )}
-                        <input className="registration__inp"
+                        <input className="auth__inp"
                             placeholder="Enter your password"
                             {...register("password", { required: "Password is required" })}
                             aria-invalid={errors.mail ? "true" : "false"}
                         />
-                        {errors.password && <p className="registration__error" role="alert">{errors.password.message}</p>}
+                        {errors.password && <p className="auth__error" role="alert">{errors.password.message}</p>}
 
-                        <button className="registration__btn" type="submit">Submit</button>
+                        <button className="auth__btn" type="submit">Sign in</button>
                     </form>
                 </div>
             </div>

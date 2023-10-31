@@ -16,6 +16,11 @@ button {
   font-family: inherit;
 }
 
+input {
+  border: none;
+  background-color: transparent;
+}
+
 /* font-family: 'Indie Flower', cursive; для подписей подсказок
 font-family: 'Lato', sans-serif; основной обычный
 font-family: 'Rowdies', sans-serif; лого
