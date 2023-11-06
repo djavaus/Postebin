@@ -1,0 +1,144 @@
+.home {
+    height: calc(100vh - 130px);
+    background-color: #131314;
+    color: #ffffff;
+    padding-top: 15px;
+}
+
+.home__wrapper {
+    display: grid;
+    grid-template-columns: 40% 60%;
+    padding: 15px 0;
+    position: relative;
+}
+
+.home__title {
+    font-family: 'Sometype Mono', monospace;
+    font-size: 23px;
+    color: #ffffff;
+    margin: 10px 0 20px;
+}
+
+.home__setting {
+    margin-bottom: 15px;
+    font-family: 'Lato', sans-serif;
+    font-weight: 900;
+    font-size: 15px;
+}
+
+.home__setting span {
+    margin-right: 15px;
+}
+
+.home__input {
+    font-family: 'Lato', sans-serif;
+    font-size: 14px;
+    background-color: #131314;
+    border: 1px solid #767676;
+    border-radius: 5px;
+    height: 30px;
+    width: 250px;
+    color: #ffffff;
+}
+
+.home__desc {
+    background-color: #131314;
+    border: 1px solid #767676;
+    height: 30px;
+    width: calc(100% - 87px);
+    border-radius: 5px;
+    font-family: 'Lato', sans-serif;
+    color: #ffffff;
+    padding: 10px;
+}
+
+.home__submit {
+    font-family: 'Sometype Mono', monospace;
+    width: 160px;
+    font-size: 16px;
+    padding: 10px 20px;
+    margin-top: 40px;
+    border-radius: 10px;
+    cursor: pointer;
+    border: 1px solid #ffffff;
+    background-color: #ffffff;
+    color: #000000;
+    text-align: center;
+}
+
+.home__submit:hover {
+    color: #ffffff;
+    background-color: #131314;
+}
+
+.home__text {
+    width: 100%;
+    color: #ffffff;
+    background-color: #131314;
+    font-family: 'Lato', sans-serif;
+    font-weight: 400;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.home__arrow {
+    position: relative;
+    font-family: 'Indie Flower', cursive;
+    color: rgba(255, 255, 255, 0.308);
+    font-size: 22px;
+}
+
+.home__arrow img {
+    width: 50px;
+}
+
+.home__arrow-home {
+    position: absolute;
+    top: 53px;
+    left: 56%;
+}
+
+.home__arrow-home img {
+    transform: rotate(-90deg);
+    margin-bottom: -10px;
+}
+
+.home__arrow-paste {
+    position: absolute;
+    top: 52px;
+    left: 75%;
+}
+
+.home__arrow-paste img {
+    width: 50px;
+    transform: rotate(-150deg);
+    margin-bottom: -15px;
+}
+
+.home__arrow-privacy {
+    display: flex;
+    align-items: flex-end;
+    position: absolute;
+    top: 25%;
+    left: 37%;
+}
+
+.home__arrow-privacy img {
+    width: 50px;
+    transform: rotate(-200deg);
+    margin-bottom: -15px;
+}
+
+.home__arrow-deadline {
+    display: flex;
+    align-items: flex-end;
+    position: absolute;
+    top: 38%;
+    left: 34%;
+}
+
+.home__arrow-deadline img {
+    width: 50px;
+    transform: rotate(160deg);
+    margin-bottom: -15px;
+}

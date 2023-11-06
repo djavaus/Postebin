@@ -1,6 +1,6 @@
 .header {
-    border-bottom: 1px solid #c7c7c7;
     position: relative;
+    background-color: #131314;
 }
 
 .header__wrapper {
@@ -29,6 +29,7 @@
     font-size: 30px;
     align-self: self-end;
     margin-left: 12px;
+    color: #ffffff;
 }
 
 .header__btns {
@@ -38,28 +39,28 @@
 
 .header__btn {
     font-family: 'Sometype Mono', monospace;
-    width: 130px;
-    font-size: 17px;
+    width: 160px;
+    font-size: 16px;
     padding: 10px 20px;
     margin-left: 40px;
     border-radius: 10px;
     cursor: pointer;
+    color: #ffffff;
+    text-align: center;
 }
 
 .header__btn:hover {
-    border: 1px solid black;
+    border: 1px solid #ffffff;
+    background-color: #131314;
+}
+
+.header__btn-logout {
     background-color: #ffffff;
-    filter: drop-shadow(0 5px #f5f5f5);
-}
-
-.header__btn-join {
-    background-color: #000000;
-    color: #ffffff;
-}
-
-.header__btn-join:hover {
-    border: 1px solid black;
     color: #000000;
-    background-color: #ffffff;
-    filter: drop-shadow(0 5px #f5f5f5);
+}
+
+.header__btn-logout:hover {
+    border: 1px solid #ffffff;
+    color: #ffffff;
+    background-color: #131314;
 }
