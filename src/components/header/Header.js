@@ -1,11 +1,13 @@
 import './Header.css'
 import logo from './logo_white.png'
 import { NavLink } from 'react-router-dom'
-
+import Cookies from 'js-cookie'
 
 export const Header = ({ setToken }) => {
-    const handleClick = () => setToken(false)
-
+    const handleClick = () => {
+        setToken("")
+        Cookies.remove("token");
+    }
 
 
     return (
@@ -16,12 +18,13 @@ export const Header = ({ setToken }) => {
                         <div className='header__img'>
                             <img src={logo} />
                         </div>
-                        <p className='header__name'>Postebin</p>
+                        <p className='header__name'>Pastebin Light</p>
                     </div>
                     <nav className='header__btns'>
-                        <NavLink to='/home' className='header__btn'>Home</NavLink>
-                        <NavLink to='/acc' className='header__btn'>Your account</NavLink>
-                        <button type='submit' className='header__btn header__btn-logout' onClick={handleClick}>Log out</button>
+                        <NavLink to='/' className='header__btn'>Home</NavLink>
+                        <NavLink to='/public' className='header__btn'>Public pastes</NavLink>
+                        <NavLink to='/acc' className='header__btn'>Your pastes</NavLink>
+                        <NavLink to='/'><button type='submit' className='header__btn header__btn-logout' onClick={handleClick}>Log out</button></NavLink>
                     </nav>
                 </div>
             </div>

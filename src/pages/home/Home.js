@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import './Home.css'
 import moment from "moment/moment";
 import axios from "axios";
@@ -6,8 +6,11 @@ import arrow_blue from "./arrow_blue.png"
 import arrow_green from "./arrow_green.png"
 import arrow_yellow from "./arrow_yellow.png"
 import arrow_pink from "./arrow_pink.png"
+import Cookies from 'js-cookie';
 
 export const Home = () => {
+    console.log(Cookies.get("token"));
+
     const initialValue = {
         text: "",
         title: "",
@@ -25,6 +28,7 @@ export const Home = () => {
             [name]: value,
         }));
     }
+
     const getDate = () => {
         if (newPost.isPrivate === "Public") {
             newPost.isPrivate = false
@@ -65,7 +69,10 @@ export const Home = () => {
             <div className="container">
                 <div className="home__wrapper">
                     <div className="home__content">
-                        <h2 className="home__title">Optional Poste Settings</h2>
+                        <div className="home__head">
+                            <h2 className="home__title home__title-paste">New Paste</h2>
+                            <div className="home__color home__color-blue"></div>
+                        </div>
                         <div className="home__setting"><span >Title:</span> <input className="home__desc" placeholder="Your paste title" type="text" name="title" onChange={handleChange} /></div>
                         <div className="home__setting"><span >Paste Exposure:</span> <select name="isPrivate" onChange={handleChange} value={initialValue.isPrivate} className="home__input">
                             <option>Public</option>
@@ -78,12 +85,18 @@ export const Home = () => {
                                 <option>1 week</option>
                                 <option>1 month</option>
                             </select></div>
-                        <div className="home__paste"><textarea className="home__text" placeholder="Write something..." name="post" type="text" onChange={handleChange} /></div>
-                        <div><button name="date" onClick={getDate} className="home__submit">New paste</button></div>
+                        <div className="home__paste"><input className="home__desc home__text" placeholder="Write something..." name="post" type="text" onChange={handleChange} /></div>
+                        <div><button name="date" onClick={getDate} className="home__submit">Paste</button></div>
+                    </div>
+                    <div className="home__latest">
+                        <div className="home__head">
+                            <h2 className="home__title home__title-latest">Latest Pastes</h2>
+                            <div className="home__color home__color-yellow"></div>
+                        </div>
                     </div>
                 </div>
 
-                <div className='home__arrow home__arrow-home'>
+                {/* <div className='home__arrow home__arrow-home'>
                     <img src={arrow_blue} />
                     <p>You can create <br />a new paste here</p>
                 </div>
@@ -93,14 +106,12 @@ export const Home = () => {
                 </div>
                 <div className='home__arrow home__arrow-privacy'>
                     <img src={arrow_pink} />
-                    <p>Choose who will be <br/>able to see your paste</p>
+                    <p>Choose who will be <br />able to see your paste</p>
                 </div>
                 <div className='home__arrow home__arrow-deadline'>
                     <img src={arrow_green} />
                     <p>Your paste will be deleted in the set time interval</p>
-                </div>
-
-
+                </div> */}
             </div>
         </section>
     )

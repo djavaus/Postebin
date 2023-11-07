@@ -1,0 +1,6 @@
+.public {
+    height: calc(100vh - 130px);
+    background-color: #131314;
+    color: #ffffff;
+    padding-top: 15px;
+}

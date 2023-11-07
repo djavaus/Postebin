@@ -3,11 +3,16 @@ import logo from './logo_black.png'
 import './Main.css'
 import { Auth } from "../../components/auth/Auth"
 import { Registration } from "../../components/registration/Registration"
-import { useState } from "react"
+import { useState, useEffect } from "react"
+import Cookies from "js-cookie"
 
-export const Main = ({ setLogedin, setToken, setGuideId}) => {
+export const Main = ({ setToken }) => {
     const [openAuth, setOpenAuth] = useState(false)
     const [openReg, setOpenReg] = useState(false)
+
+    useEffect(() => {
+        setToken(Cookies.get("token"))
+    }, [])
 
     const handleAuth = () => {
         setOpenAuth(!openAuth)
@@ -26,7 +31,7 @@ export const Main = ({ setLogedin, setToken, setGuideId}) => {
                             <div className='topbar__img'>
                                 <img src={logo} />
                             </div>
-                            <p className='topbar__name'>Postebin</p>
+                            <p className='topbar__name'>Pastebin Light</p>
                         </div>
                         <div className='topbar__btns'>
                             <button type='submit' className='topbar__btn topbar__btn-signin' onClick={handleAuth}>Sign in</button>
@@ -34,11 +39,11 @@ export const Main = ({ setLogedin, setToken, setGuideId}) => {
                         </div>
                     </div>
                     <div style={{ display: openAuth ? 'block' : 'none' }}>
-                        <Auth setLogedin={setLogedin} handleAuth={handleAuth} setToken={setToken} />
+                        <Auth handleAuth={handleAuth} setToken={setToken} />
                         <div className='topbar__overlay'></div>
                     </div>
                     <div style={{ display: openReg ? 'block' : 'none' }}>
-                        <Registration handleReg={handleReg} setLogedin={setLogedin} />
+                        <Registration handleReg={handleReg} />
                         <div className='topbar__overlay'></div>
                     </div>
                 </div>

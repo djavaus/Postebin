@@ -2,11 +2,15 @@ import axios from "axios"
 import { useState, useEffect } from "react"
 import "./Account.css"
 import { PasteModal } from "../../components/pasteModal/PasteModal"
+import Cookies from 'js-cookie';
 
 export const Account = () => {
     const [pasteDetail, setPasteDetail] = useState("")
     const [user, setUser] = useState([])
     const [pasteDelete, setPasteDelete] = useState("")
+
+    console.log(Cookies.get("token"));
+    console.log(document.cookie)
 
     useEffect(() => {
         const getUser = async (userId) => {
@@ -37,7 +41,7 @@ export const Account = () => {
     return (
         <section className="acc">
             <div className="container">
-                <h2 className="acc__title">{user.username}'s Postebin</h2>
+                <h2 className="acc__title">{user.username}'s Pastebin</h2>
                 <div className="acc__wrapper">
                     <table className="acc__table">
                         <thead>

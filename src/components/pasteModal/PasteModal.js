@@ -24,7 +24,10 @@ export const PasteModal = ({ pasteDetail, setPasteDetail }) => {
     return (
         <div className="modal">
             <div className="modal__wrapper">
-                <img className="modal__close" src={modal_close} onClick={handleClose} />
+                <div onClick={handleClose} className="modal__cross">
+                    <img className="modal__close" src={modal_close} />
+                    <div className="modal__color"></div>
+                </div>
                 <h3 className="modal__title">{paste.title}</h3>
                 <div className="modal__content"><span>Privacy: </span><p>{paste.title}</p></div>
                 <div className="modal__content"><span>Deadline: </span><p>{paste.title}</p></div>

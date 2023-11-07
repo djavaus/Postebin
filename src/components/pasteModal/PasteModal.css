@@ -22,12 +22,28 @@
     color: #ffffff;
 }
 
+.modal__cross {
+    position: relative;
+}
+
+.modal__color {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    background-color: rgba(255, 0, 191, 0.4);
+    z-index: 2;
+    position: absolute;
+    top: 0;
+    right: 5px;
+}
+
 .modal__close {
     width: 25px;
     position: absolute;
-    top: 15px;
-    right: 15px;
+    top: 0;
+    right: 0;
     cursor: pointer;
+    z-index: 1;
 }
 
 .modal__close:hover {

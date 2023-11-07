@@ -5,14 +5,21 @@ import { useForm } from "react-hook-form"
 import { users } from '../Users'
 import { json } from "react-router-dom"
 import axios from "axios"
+import Cookies from 'js-cookie';
 
-export const Auth = ({ handleAuth, setToken, setLogedin }) => {
+export const Auth = ({ handleAuth, setToken }) => {
     const {
         register,
         handleSubmit,
         watch,
         formState: { errors },
     } = useForm()
+
+     const setCookies = (token) => {
+    Cookies.set("token", token, { expires: 7 });
+    alert('We use cookes');
+  }
+
 
     // const onSubmit = (data) => {
     //         const getResponse = async () => {
@@ -43,12 +50,9 @@ export const Auth = ({ handleAuth, setToken, setLogedin }) => {
         }
         const { data } = await axios(config)
         console.log(data);
-        setToken(data)
+        setToken(data.token)
+        setCookies(data.token)
     }
-    // const onSubmit = (data) => {
-    //     setLogedin(true)
-    //     console.log(data)
-    // }
 
     // const onSubmit = (data) => console.log(data)
 

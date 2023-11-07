@@ -39,10 +39,10 @@
 
 .header__btn {
     font-family: 'Sometype Mono', monospace;
-    width: 160px;
+    width: 150px;
     font-size: 16px;
-    padding: 10px 20px;
-    margin-left: 40px;
+    padding: 10px 10px;
+    margin-left: 25px;
     border-radius: 10px;
     cursor: pointer;
     color: #ffffff;
