@@ -2,7 +2,7 @@ import './Public.css'
 import axios from 'axios'
 import { useEffect } from 'react'
 
-export const Public = () => {
+export const Public = ({theme}) => {
   // useEffect(() => {
   //   const getPastes = async () => {
   //     let {data} = await axios('https://1387-212-42-120-155.ngrok-free.app/api/Poste', {

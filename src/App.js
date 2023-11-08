@@ -35,8 +35,8 @@ const App = () => {
             <Header setToken={setToken} theme={theme} />
             <Routes>
               <Route element={<Home toggleTheme={toggleTheme} theme={theme} />} path='/' />
-              <Route element={<Account />} path='/acc' />
-              <Route element={<Public />} path='/public' />
+              <Route element={<Account theme={theme} />} path='/acc' />
+              <Route element={<Public theme={theme}/>} path='/public' />
             </Routes>
             <Footer />
           </Router>

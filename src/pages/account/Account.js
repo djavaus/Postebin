@@ -2,19 +2,28 @@ import axios from "axios"
 import { useState, useEffect } from "react"
 import "./Account.css"
 import { PasteModal } from "../../components/pasteModal/PasteModal"
+import { Pagination } from "../../components/pagination/Pagination"
 
-export const Account = () => {
+export const Account = ({ theme }) => {
     const [pasteDetail, setPasteDetail] = useState("")
     const [user, setUser] = useState([])
     const [pasteDelete, setPasteDelete] = useState("")
 
-    useEffect(() => {
-        const getUser = async (userId) => {
-            let { data } = await axios(`https://fakestoreapi.com/users/${userId}`)
-            setUser(data)
-        }
-        getUser(1)
-    }, [])
+
+    const [currentPage, setCurrentPage] = useState(1)
+    const [pastesPerPage, setPastesPerPage] = useState(20)
+    const indexOfLastPaste = currentPage * pastesPerPage;
+    const indexOfFirstPaste = indexOfLastPaste - pastesPerPage;
+    const currentPastes = pastes.slice(indexOfFirstPaste, indexOfLastPaste) //pastes должны прийти из запроса getAll
+
+
+    // useEffect(() => {
+    //     const getUser = async (userId) => {
+    //         let { data } = await axios(`https://fakestoreapi.com/users/${userId}`)
+    //         setUser(data)
+    //     }
+    //     getUser(1)
+    // }, [])
 
     const handleDelete = async (e) => {
         const { data } = await axios.delete(
@@ -67,7 +76,13 @@ export const Account = () => {
 
                     </table>
                     <button id="1" onClick={handleDetails} style={{ color: "white" }}>DETAILS</button>
-                    <div>{pasteDetail ? <PasteModal pasteDetail={pasteDetail} setPasteDetail={setPasteDetail} /> : ""}</div>
+                    <div>{pasteDetail ? <PasteModal pasteDetail={pasteDetail}
+                        setPasteDetail={setPasteDetail} /> : ""}</div>
+                    <Pagination theme={theme}
+                        pastes={pastes}
+                        pastesPerPage={pastesPerPage}
+                        setCurrentPage={setCurrentPage}
+                        currentPage={currentPage} />
                 </div>
             </div>
         </section>
