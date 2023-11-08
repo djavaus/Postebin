@@ -1,10 +1,17 @@
 import registratio_img from "./registration_img.png"
+import eyeclosed from "./eyeclosed.png"
+import eyeopened from "./eyeopened.png"
 import "./Registration.css"
 import reg_close from './reg_close.png'
 import { useForm } from "react-hook-form"
-import { users } from '../Users'
+import { useState } from "react"
 
-export const Registration = ({ handleReg, setLogedin}) => {
+export const Registration = ({ handleReg, setLogedin }) => {
+    const [showPass, setShowPass] = useState(false)
+
+    const handleShowPass = () => {
+        setShowPass(!showPass)
+    }
 
     const {
         register,
@@ -63,11 +70,17 @@ export const Registration = ({ handleReg, setLogedin}) => {
                             aria-invalid={errors.mail ? "true" : "false"}
                         />
                         {errors.mail && <p className="registration__error" role="alert">{errors.mail.message}</p>}
-                        <input className="registration__inp"
-                            placeholder="Enter your password"
-                            {...register("password", { required: "Password is required" })}
-                            aria-invalid={errors.mail ? "true" : "false"}
-                        />
+                        <div className="registration__showpass">
+                            <input className="registration__inp"
+                                type={showPass ? "text" : "password"}
+                                placeholder="Enter your password"
+                                {...register("password", { required: "Password is required" })}
+                                aria-invalid={errors.mail ? "true" : "false"}
+                            />
+                            <div className="registration__eye">
+                                <img src={showPass ? eyeopened : eyeclosed} onClick={handleShowPass} />
+                            </div>
+                        </div>
                         {errors.password && <p className="registration__error" role="alert">{errors.password.message}</p>}
 
                         <button className="registration__btn" type="submit">Submit</button>
@@ -78,7 +91,7 @@ export const Registration = ({ handleReg, setLogedin}) => {
     )
 }
 
-// Написать функцию, которая принимает два параметра: длину пароля и символы, 
+// Написать функцию, которая принимает два параметра: длину пароля и символы,
 //из которых он состояит. Например, (4, ['a','b','c'])
 
 // function gen(len, arr) {
@@ -89,4 +102,3 @@ export const Registration = ({ handleReg, setLogedin}) => {
 // }
 // console.log(gen(5, ['a','b','c','d']));
 
- 

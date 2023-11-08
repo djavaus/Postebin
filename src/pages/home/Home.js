@@ -1,16 +1,15 @@
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import './Home.css'
+import { ThemeToggle } from "../../components/themeToggle/ThemeToggle";
 import moment from "moment/moment";
 import axios from "axios";
 import arrow_blue from "./arrow_blue.png"
 import arrow_green from "./arrow_green.png"
 import arrow_yellow from "./arrow_yellow.png"
 import arrow_pink from "./arrow_pink.png"
-import Cookies from 'js-cookie';
 
-export const Home = () => {
-    console.log(Cookies.get("token"));
 
+export const Home = ({ toggleTheme, theme }) => {
     const initialValue = {
         text: "",
         title: "",
@@ -67,6 +66,7 @@ export const Home = () => {
     return (
         <section className="home">
             <div className="container">
+                <ThemeToggle toggleTheme={toggleTheme} theme={theme} />
                 <div className="home__wrapper">
                     <div className="home__content">
                         <div className="home__head">
@@ -74,7 +74,7 @@ export const Home = () => {
                             <div className="home__color home__color-blue"></div>
                         </div>
                         <div className="home__setting"><span >Title:</span> <input className="home__desc" placeholder="Your paste title" type="text" name="title" onChange={handleChange} /></div>
-                        <div className="home__setting"><span >Paste Exposure:</span> <select name="isPrivate" onChange={handleChange} value={initialValue.isPrivate} className="home__input">
+                        <div className="home__setting"><span >Paste Exposure:</span> <select name="isPrivate" onChange={handleChange} defaultValue={initialValue.isPrivate} className="home__input">
                             <option>Public</option>
                             <option>Private</option>
                         </select></div>
@@ -85,7 +85,7 @@ export const Home = () => {
                                 <option>1 week</option>
                                 <option>1 month</option>
                             </select></div>
-                        <div className="home__paste"><input className="home__desc home__text" placeholder="Write something..." name="post" type="text" onChange={handleChange} /></div>
+                        <div className="home__paste"><input className="home__text" placeholder="Write something..." name="post" type="text" onChange={handleChange} /></div>
                         <div><button name="date" onClick={getDate} className="home__submit">Paste</button></div>
                     </div>
                     <div className="home__latest">

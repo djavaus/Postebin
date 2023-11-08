@@ -1,14 +1,14 @@
 import './Header.css'
 import logo from './logo_white.png'
+import logo_black from './logo_black.png'
 import { NavLink } from 'react-router-dom'
 import Cookies from 'js-cookie'
 
-export const Header = ({ setToken }) => {
+export const Header = ({ setToken, theme }) => {
     const handleClick = () => {
         setToken("")
         Cookies.remove("token");
     }
-
 
     return (
         <header className="header">
@@ -16,7 +16,7 @@ export const Header = ({ setToken }) => {
                 <div className="header__wrapper">
                     <div className="header__logo">
                         <div className='header__img'>
-                            <img src={logo} />
+                            <img src={theme === "light" ? logo_black : logo} />
                         </div>
                         <p className='header__name'>Pastebin Light</p>
                     </div>

@@ -2,15 +2,11 @@ import axios from "axios"
 import { useState, useEffect } from "react"
 import "./Account.css"
 import { PasteModal } from "../../components/pasteModal/PasteModal"
-import Cookies from 'js-cookie';
 
 export const Account = () => {
     const [pasteDetail, setPasteDetail] = useState("")
     const [user, setUser] = useState([])
     const [pasteDelete, setPasteDelete] = useState("")
-
-    console.log(Cookies.get("token"));
-    console.log(document.cookie)
 
     useEffect(() => {
         const getUser = async (userId) => {
@@ -46,11 +42,11 @@ export const Account = () => {
                     <table className="acc__table">
                         <thead>
                             <tr>
-                                <th>Paste Title</th>
-                                <th>Deadline</th>
-                                <th>Privacy</th>
-                                <th>Details</th>
-                                <th>Delete</th>
+                                <th className="acc__row">Paste Title</th>
+                                <th className="acc__row">Deadline</th>
+                                <th className="acc__row">Privacy</th>
+                                <th className="acc__row">Details</th>
+                                <th className="acc__row">Delete</th>
                             </tr>
                         </thead>
                         {/* {user.paste.map((paste) => {

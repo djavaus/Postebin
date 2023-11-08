@@ -1,6 +1,6 @@
 .header {
     position: relative;
-    background-color: #131314;
+    /* background-color: #131314; */
 }
 
 .header__wrapper {
@@ -29,7 +29,7 @@
     font-size: 30px;
     align-self: self-end;
     margin-left: 12px;
-    color: #ffffff;
+    /* color: #ffffff; */
 }
 
 .header__btns {
@@ -45,7 +45,7 @@
     margin-left: 25px;
     border-radius: 10px;
     cursor: pointer;
-    color: #ffffff;
+    /* color: #ffffff; */
     text-align: center;
 }
 

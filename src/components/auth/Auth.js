@@ -1,13 +1,20 @@
 import auth_img from "./auth_img.png"
+import eyeclosed from "./eyeclosed.png"
+import eyeopened from "./eyeopened.png"
 import "./Auth.css"
 import auth_close from './auth_close.png'
 import { useForm } from "react-hook-form"
-import { users } from '../Users'
-import { json } from "react-router-dom"
 import axios from "axios"
 import Cookies from 'js-cookie';
+import { useState } from "react"
 
 export const Auth = ({ handleAuth, setToken }) => {
+    const [showPass, setShowPass] = useState(false)
+
+    const handleShowPass = () => {
+        setShowPass(!showPass)
+    }
+
     const {
         register,
         handleSubmit,
@@ -15,10 +22,10 @@ export const Auth = ({ handleAuth, setToken }) => {
         formState: { errors },
     } = useForm()
 
-     const setCookies = (token) => {
-    Cookies.set("token", token, { expires: 7 });
-    alert('We use cookes');
-  }
+    const setCookies = (token) => {
+        Cookies.set("token", token, { expires: 7 });
+        alert('We use cookes');
+    }
 
 
     // const onSubmit = (data) => {
@@ -81,11 +88,17 @@ export const Auth = ({ handleAuth, setToken }) => {
                         {errors.username?.type === "required" && (
                             <p className="auth__error" role="alert">Username is required</p>
                         )}
-                        <input className="auth__inp"
-                            placeholder="Enter your password"
-                            {...register("password", { required: "Password is required" })}
-                            aria-invalid={errors.mail ? "true" : "false"}
-                        />
+                        <div className="auth__showpass">
+                            <input className="auth__inp"
+                                placeholder="Enter your password"
+                                type={showPass ? "text" : "password"}
+                                {...register("password", { required: "Password is required" })}
+                                aria-invalid={errors.mail ? "true" : "false"}
+                            />
+                            <div className="auth__eye">
+                                <img src={showPass ? eyeopened : eyeclosed} onClick={handleShowPass} />
+                            </div>
+                        </div>
                         {errors.password && <p className="auth__error" role="alert">{errors.password.message}</p>}
 
                         <button className="auth__btn" type="submit">Sign in</button>
