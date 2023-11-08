@@ -4,11 +4,13 @@ import eyeopened from "./eyeopened.png"
 import "./Auth.css"
 import auth_close from './auth_close.png'
 import { useForm } from "react-hook-form"
-import axios from "axios"
 import Cookies from 'js-cookie';
 import { useState } from "react"
+import { useDispatch } from 'react-redux';
+import { getLogin } from "../../redux/action"
 
 export const Auth = ({ handleAuth, setToken }) => {
+    const dispatch = useDispatch()
     const [showPass, setShowPass] = useState(false)
 
     const handleShowPass = () => {
@@ -27,41 +29,10 @@ export const Auth = ({ handleAuth, setToken }) => {
         alert('We use cookes');
     }
 
-
-    // const onSubmit = (data) => {
-    //         const getResponse = async () => {
-    //             let response = await fetch('https://fakestoreapi.com/auth/login', {
-    //                 method: 'POST',
-    //                 headers: {
-    //                     'Content-Type': 'application/json;charset=utf-8'
-    //                 },
-    //                 body: JSON.stringify(data)
-
-    //             })
-    //             // setToken(response)
-    //            console.log(response);
-    //         };
-    //         getResponse()
-    // }
     const onSubmit = async (user) => {
-        const config = {
-            method: 'POST',
-            url: 'https://fakestoreapi.com/auth/login',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            data: JSON.stringify({
-                username: user.username,
-                password: user.password
-            }),
-        }
-        const { data } = await axios(config)
-        console.log(data);
-        setToken(data.token)
-        setCookies(data.token)
+        dispatch(getLogin(user))
+        setToken(Cookies.get("token"))
     }
-
-    // const onSubmit = (data) => console.log(data)
 
     console.log(watch("username")) // watch input value by passing the name of it
 

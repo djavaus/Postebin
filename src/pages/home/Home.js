@@ -1,24 +1,36 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import './Home.css'
 import { ThemeToggle } from "../../components/themeToggle/ThemeToggle";
 import moment from "moment/moment";
-import axios from "axios";
+import { useDispatch, useSelector } from 'react-redux';
+import { sendRecord, getAllPublicRecords } from "../../redux/action";
 import arrow_blue from "./arrow_blue.png"
 import arrow_green from "./arrow_green.png"
 import arrow_yellow from "./arrow_yellow.png"
 import arrow_pink from "./arrow_pink.png"
 
+const initialValue = {
+    text: "",
+    title: "",
+    isPrivate: "Public",
+    deadLine: moment().add(1, 'hour').format(),
+}
 
 export const Home = ({ toggleTheme, theme }) => {
-    const initialValue = {
-        text: "",
-        title: "",
-        isPrivate: "Public",
-        // dateCreated: moment().format(),
-        deadLine: moment().add(1, 'hour').format(),
-    }
-
+    const newPostId = useSelector((state) => state.createOneRecord)
+    const allRecords = useSelector((state) => state.getAllPublicRecords)
+    const dispatch = useDispatch()
     const [newPost, setNewPost] = useState(initialValue)
+    const [lastTenPosts, setLastTenPosts] = useState([])
+
+    useEffect(() => {
+        const getTenLastPosts = (records) => {
+            setLastTenPosts(records.slice(records.length - 10, records.length))
+        }
+        dispatch(getAllPublicRecords())
+        getTenLastPosts(allRecords)
+    }, [newPostId])
+
     const handleChange = (e) => {
         console.log(e)
         const { name, value } = e.target;
@@ -28,7 +40,7 @@ export const Home = ({ toggleTheme, theme }) => {
         }));
     }
 
-    const getDate = () => {
+    const sendPost = () => {
         if (newPost.isPrivate === "Public") {
             newPost.isPrivate = false
         } else {
@@ -44,23 +56,7 @@ export const Home = ({ toggleTheme, theme }) => {
         } else if (newPost.deadLine === "1 month") {
             newPost.deadLine = moment().add(1, "months").format();
         }
-        const sendNewPost = async (newPost) => {
-            console.log(newPost)
-            let { data } = await axios('https://fakestoreapi.com/products', {
-                method: "POST",
-                body: JSON.stringify(
-                    {
-                        text: newPost.text,
-                        title: newPost.title,
-                        isPrivate: newPost.isPrivate,
-                        // dateCreated: moment().format(),
-                        deadLine: newPost.deadLine,
-                    }
-                )
-            })
-            console.log(data)
-        }
-        sendNewPost(newPost)
+        dispatch(sendRecord(newPost))
     }
 
     return (
@@ -86,7 +82,7 @@ export const Home = ({ toggleTheme, theme }) => {
                                 <option>1 month</option>
                             </select></div>
                         <div className="home__paste"><input className="home__text" placeholder="Write something..." name="post" type="text" onChange={handleChange} /></div>
-                        <div><button name="date" onClick={getDate} className="home__submit">Paste</button></div>
+                        <div><button name="date" onClick={sendPost} className="home__submit">Paste</button></div>
                     </div>
                     <div className="home__latest">
                         <div className="home__head">

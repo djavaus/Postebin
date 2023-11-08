@@ -3,11 +3,14 @@ import logo from './logo_white.png'
 import logo_black from './logo_black.png'
 import { NavLink } from 'react-router-dom'
 import Cookies from 'js-cookie'
+import { useDispatch } from 'react-redux'
 
 export const Header = ({ setToken, theme }) => {
+    const dispatch = useDispatch()
     const handleClick = () => {
+        Cookies.remove('token')
         setToken("")
-        Cookies.remove("token");
+        dispatch({ type: "SET_A_LOGIN", token: "" })
     }
 
     return (

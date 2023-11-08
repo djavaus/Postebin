@@ -7,7 +7,6 @@ import { Account } from "./pages/account/Account"
 import { Public } from "./pages/public/Public";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { createContext, useState } from "react";
-import Cookies from "js-cookie";
 
 export const ThemeContext = createContext(null)
 
@@ -15,17 +14,9 @@ const App = () => {
   const [token, setToken] = useState('')
   const [theme, setTheme] = useState('dark')
 
-  const setCookies = () => {
-    Cookies.set("token", token, { expires: 1 / 24 });
-  }
-
   const toggleTheme = (theme) => {
     setTheme((curr) => curr === "light" ? "dark" : "light")
   }
-
-  // const GetCookie = () => {
-  //   alert(Cookies.get("token"));
-  // };
 
   if (token) {
     return (
@@ -36,7 +27,7 @@ const App = () => {
             <Routes>
               <Route element={<Home toggleTheme={toggleTheme} theme={theme} />} path='/' />
               <Route element={<Account theme={theme} />} path='/acc' />
-              <Route element={<Public theme={theme}/>} path='/public' />
+              <Route element={<Public theme={theme} />} path='/public' />
             </Routes>
             <Footer />
           </Router>

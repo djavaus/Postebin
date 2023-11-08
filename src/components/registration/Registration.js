@@ -5,9 +5,14 @@ import "./Registration.css"
 import reg_close from './reg_close.png'
 import { useForm } from "react-hook-form"
 import { useState } from "react"
+import { useSelector, useDispatch } from "react-redux"
+import { createUser } from "../../redux/action"
 
 export const Registration = ({ handleReg, setLogedin }) => {
     const [showPass, setShowPass] = useState(false)
+
+    const dispatch = useDispatch()
+    const user = useSelector((state) => state.createUser)
 
     const handleShowPass = () => {
         setShowPass(!showPass)
@@ -20,24 +25,11 @@ export const Registration = ({ handleReg, setLogedin }) => {
         formState: { errors },
     } = useForm()
 
-    // const onSubmit = (data) => {
-    //     const response = async () => {
-    //         await fetch('', {
-    //             method: 'POST',
-    //             headers: {
-    //                 'Content-Type': 'application/json;charset=utf-8'
-    //             },
-    //             body: JSON.stringify(data)
-    //         })
-    //     };
-    //     response()
-    // }
-
     const onSubmit = (data) => {
+        dispatch(createUser(data))
         setLogedin(true)
         console.log(data)
     }
-
 
     console.log(watch("username")) // watch input value by passing the name of it
 
@@ -90,15 +82,4 @@ export const Registration = ({ handleReg, setLogedin }) => {
         </div>
     )
 }
-
-// Написать функцию, которая принимает два параметра: длину пароля и символы,
-//из которых он состояит. Например, (4, ['a','b','c'])
-
-// function gen(len, arr) {
-//     if (len === 0) {
-//         return [''];
-//     }
-//     return arr.flatMap(char => gen(len - 1, arr).map(password => char + password))
-// }
-// console.log(gen(5, ['a','b','c','d']));
 
