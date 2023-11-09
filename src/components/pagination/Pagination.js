@@ -2,11 +2,14 @@ import arrow_left_white from './pagination_left_white.png'
 import arrow_right_white from './pagination_right_white.png'
 import arrow_left_black from './pagination_left_black.png'
 import arrow_right_black from './pagination_right_black.png'
+import "./Pagination.css"
+import { useState } from 'react'
 
-export const Pagination = ({ theme, pastes, pastesPerPage, setCurrentPage, currentPage }) => {
+export const Pagination = ({ theme, pastes, pastesPerPage, currentPage, setCurrentPage }) => {
+
 
     const pageNumbers = [];
-    for (let i = 1; i <= Math.ceil(pastes / pastesPerPage); i++) {
+    for (let i = 1; i <= Math.ceil(pastes.length / pastesPerPage); i++) {
         pageNumbers.push(i);
     }
 

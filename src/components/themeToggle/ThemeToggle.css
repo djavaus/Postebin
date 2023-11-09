@@ -32,5 +32,5 @@
 
 .theme__toggle:not(:checked)+label {
   background-color: transparent;
-  box-shadow: inset -5px -4px 1px 1px #fff;
+  box-shadow: inset -6px -5px 1px 1px #fff;
 }

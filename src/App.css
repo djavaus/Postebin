@@ -47,6 +47,10 @@ a {
     color: #000;
 }
 
+#light .public__row {
+    color: #000;
+}
+
 #light .home__submit,
 .header__btn-logout {
     background-color: #000;
@@ -78,6 +82,15 @@ a {
     color: #000;
 }
 
+#light .table__line {
+    color: #000;
+}
+
+#light tr:nth-child(even) td {
+    background: #00000018;
+}
+
+
 /* DARK */
 
 #dark .home__submit {
@@ -87,9 +100,9 @@ a {
 
 #dark .home__submit:hover {
     background-color: #fff;
-    color: #0252e694;
+    color: #ff00bf66;
     cursor: pointer;
-    filter: drop-shadow(6px 6px 0 #0252e694);
+    filter: drop-shadow(6px 6px 0 #ff00bf66);
 }
 
 #dark .home__input {
@@ -102,10 +115,18 @@ a {
     color: #fff;
 }
 
-#dark .acc__row {
+#dark .acc__row,
+.public__row {
     color: #fff;
 }
 
+#dark .table__line {
+    color: #fff;
+}
+
+#dark tr:nth-child(even) td {
+    background: #ffffff0c;
+}
 
 
 /* font-family: 'Indie Flower', cursive; для подписей подсказок

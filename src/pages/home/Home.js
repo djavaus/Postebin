@@ -87,7 +87,7 @@ export const Home = ({ toggleTheme, theme }) => {
                     <div className="home__latest">
                         <div className="home__head">
                             <h2 className="home__title home__title-latest">Latest Pastes</h2>
-                            <div className="home__color home__color-yellow"></div>
+                            <div className="home__color home__color-green"></div>
                         </div>
                     </div>
                 </div>
