@@ -1,13 +1,10 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect, useContext } from "react"
 import './Home.css'
 import { ThemeToggle } from "../../components/themeToggle/ThemeToggle";
 import moment from "moment/moment";
 import { useDispatch, useSelector } from 'react-redux';
 import { sendRecord, getAllPublicRecords } from "../../redux/action";
-import arrow_blue from "./arrow_blue.png"
-import arrow_green from "./arrow_green.png"
-import arrow_yellow from "./arrow_yellow.png"
-import arrow_pink from "./arrow_pink.png"
+import { ThemeContext } from '../../App'
 
 const initialValue = {
     text: "",
@@ -16,20 +13,24 @@ const initialValue = {
     deadLine: moment().add(1, 'hour').format(),
 }
 
-export const Home = ({ toggleTheme, theme }) => {
+export const Home = () => {
     const newPostId = useSelector((state) => state.createOneRecord)
     const allRecords = useSelector((state) => state.getAllPublicRecords)
     const dispatch = useDispatch()
     const [newPost, setNewPost] = useState(initialValue)
     const [lastTenPosts, setLastTenPosts] = useState([])
+    const { theme, toggleTheme } = useContext(ThemeContext);
+
+    console.log(lastTenPosts);
+    const getTenLastPosts = (records) => {
+        setLastTenPosts(records.slice(records.length - 10, records.length))
+    }
 
     useEffect(() => {
-        const getTenLastPosts = (records) => {
-            setLastTenPosts(records.slice(records.length - 10, records.length))
-        }
+     
         dispatch(getAllPublicRecords())
         getTenLastPosts(allRecords)
-    }, [newPostId])
+    }, [])
 
     const handleChange = (e) => {
         console.log(e)
@@ -89,25 +90,15 @@ export const Home = ({ toggleTheme, theme }) => {
                             <h2 className="home__title home__title-latest">Latest Pastes</h2>
                             <div className="home__color home__color-green"></div>
                         </div>
+                        <div className="home__post">
+                            {lastTenPosts.map((post) => {
+                               return <div><p className="home__topic">{post.title}</p></div>
+                            })}
+                        </div>
                     </div>
                 </div>
 
-                {/* <div className='home__arrow home__arrow-home'>
-                    <img src={arrow_blue} />
-                    <p>You can create <br />a new paste here</p>
-                </div>
-                <div className='home__arrow home__arrow-paste'>
-                    <img src={arrow_yellow} />
-                    <p>Here you can find all your pastes</p>
-                </div>
-                <div className='home__arrow home__arrow-privacy'>
-                    <img src={arrow_pink} />
-                    <p>Choose who will be <br />able to see your paste</p>
-                </div>
-                <div className='home__arrow home__arrow-deadline'>
-                    <img src={arrow_green} />
-                    <p>Your paste will be deleted in the set time interval</p>
-                </div> */}
+
             </div>
         </section>
     )

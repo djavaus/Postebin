@@ -1,11 +1,15 @@
 import './Header.css'
+import { ThemeContext } from '../../App'
+import { useContext } from 'react'
 import logo from './logo_white.png'
 import logo_black from './logo_black.png'
 import { NavLink } from 'react-router-dom'
 import Cookies from 'js-cookie'
 import { useDispatch } from 'react-redux'
 
-export const Header = ({ setToken, theme }) => {
+export const Header = ({ setToken}) => {
+const theme = useContext(ThemeContext);   
+    
     const dispatch = useDispatch()
     const handleClick = () => {
         Cookies.remove('token')
@@ -19,7 +23,7 @@ export const Header = ({ setToken, theme }) => {
                 <div className="header__wrapper">
                     <div className="header__logo">
                         <div className='header__img'>
-                            <img src={theme === "light" ? logo_black : logo} />
+                            <img src={theme.theme === "light" ? logo_black : logo} />
                         </div>
                         <p className='header__name'>Pastebin Light</p>
                     </div>

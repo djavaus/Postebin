@@ -1,20 +1,33 @@
 import axios from "axios"
-import { useState, useEffect } from "react"
+import { useState, useEffect, useContext } from "react"
+import { ThemeContext } from '../../App'
 import "./Account.css"
 import { PasteModal } from "../../components/pasteModal/PasteModal"
 import { Pagination } from "../../components/pagination/Pagination"
 
-export const Account = ({ theme }) => {
+
+export const Account = () => {
     const [pasteDetail, setPasteDetail] = useState("")
     const [user, setUser] = useState([])
     const [pasteDelete, setPasteDelete] = useState("")
     const [pastes, setPastes] = useState([])
+ const theme = useContext(ThemeContext);  
+
+    useEffect(() => {
+        const getPastes = async () => {
+            let { data } = await axios(`https://fakestoreapi.com/products`)
+            setPastes(data)
+        }
+        getPastes()
+    }, [])
 
     const pastesPerPage = 10;
     const [currentPage, setCurrentPage] = useState(1);
     const indexOfLastPaste = currentPage * pastesPerPage;
     const indexOfFirstPaste = indexOfLastPaste - pastesPerPage;
     const currentPastes = pastes.slice(indexOfFirstPaste, indexOfLastPaste)
+
+    // console.log(currentPastes);
 
     // useEffect(() => {
     //     const getUser = async (userId) => {
@@ -38,21 +51,14 @@ export const Account = ({ theme }) => {
         setPasteDelete(data)
     }
 
-    useEffect(() => {
-        const getPastes = async () => {
-            let { data } = await axios(`https://fakestoreapi.com/products`)
-            setPastes(data)
-        }
-        getPastes()
-    }, [])
-
     // console.log(pasteDelete)
 
-    const handleDetails = (data) => {
-        setPasteDetail(data)
-        console.log(data)
+    const handleDetails = (e) => {
+        setPasteDetail(e.target.id)
+        console.log(e);
+        
     }
-
+console.log(pasteDetail)
     // console.log(user)
     // console.log(pasteDetail)
     return (
@@ -63,47 +69,24 @@ export const Account = ({ theme }) => {
                     <div className="acc__color"></div>
                 </div>
                 <div className="acc__wrapper">
-                    <table className="acc__table">
-                        <thead>
-                            <tr>
-                                <th className="acc__row">Paste Title</th>
-                                <th className="acc__row">Deadline</th>
-                                <th className="acc__row">Privacy</th>
-                                <th className="acc__row">Details</th>
-                                <th className="acc__row">Delete</th>
-                            </tr>
-                        </thead>
-                        {/* {user.paste.map((paste) => {
-                            <div style={{
-                                display: paste.id === pasteDelete ? "none" : "block"
-                            }}>
-                                <tbody>
-                                    <tr>
-                                        <td>{paste.title}</td>
-                                        <td>{paste.deadLine}</td>
-                                        <td>{paste.isPrivat}</td>
-                                        <td id={paste.id} onCLick={handleDetails}>DETAILS</td>
-                                        <td id={paste.id} onCLick={handleDelete}>DELETE</td>
-                                    </tr>
-                                </tbody>
+                    <div className="acc__table">
+                        <div className="acc__head">
+                            <p>Paste Title</p>
+                            <p>Deadline</p>
+                            <p>Privacy</p>
+                            <p>Delete Paste</p>
+                        </div>
+                        {currentPastes.map((paste) => {
+                            return <div className="acc__lines" onClick={handleDetails}>
+                                <p className="acc__line acc__line-title" id={paste.id}>{paste.title}</p>
+                                <p className="acc__line" id={paste.id}>{paste.price}</p>
+                                <p className="acc__line" id={paste.id}>{paste.category}</p>
+                                <p className="acc__line acc__line-btn" id={paste.id} onCLick={handleDelete}>DELETE</p>
                             </div>
-                        })} */}
-                        <tbody>
-                            {currentPastes.map((paste) => {
-                                return <tr onCLick={handleDetails}>
-                                    <td className="table__line">{paste.title}</td>
-                                    <td className="table__line">{paste.price}</td>
-                                    <td className="table__line">{paste.category}</td>
-                                    <td className="table__line table__line-btn" id='1' >DETAILS</td>
-                                    <td className="table__line table__line-btn" id={paste.id} onCLick={handleDelete}>DELETE</td>
-                                </tr>
-                            })}
-                        </tbody>
-                    </table>
-                    {/* <button id="1" onClick={handleDetails} style={{ color: "white" }}>DETAILS</button> */}
-                   {pasteDetail ? <PasteModal pasteDetail={pasteDetail} setPasteDetail={setPasteDetail} /> : ""}
-                    <Pagination theme={theme}
-                        pastes={pastes}
+                        })}
+                    </div>
+                    {pasteDetail ? <PasteModal pasteDetail={pasteDetail} setPasteDetail={setPasteDetail} /> : ""}
+                    <Pagination pastes={pastes}
                         pastesPerPage={pastesPerPage}
                         currentPage={currentPage}
                         setCurrentPage={setCurrentPage}

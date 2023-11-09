@@ -12,7 +12,6 @@ const initialState = {
     changeUser: {},
     login: "",
     registration: {},
-
 }
 
 

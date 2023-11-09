@@ -90,6 +90,19 @@ a {
     background: #00000018;
 }
 
+#light .modal__wrapper {
+    color: #000;
+    background-color: #fff;  
+}
+
+#light .modal__title {
+    color: #000;
+}
+
+#light .home__post {
+    color: #000;
+}
+
 
 /* DARK */
 
@@ -126,6 +139,19 @@ a {
 
 #dark tr:nth-child(even) td {
     background: #ffffff0c;
+}
+
+#dark .modal__wrapper {
+    color: #fff;
+    background-color: #131314;  
+}
+
+#dark .modal__title {
+    color: #fff;
+}
+
+#dark .home__post {
+    color: #fff;
 }
 
 

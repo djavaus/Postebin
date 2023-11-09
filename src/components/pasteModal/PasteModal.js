@@ -1,11 +1,15 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useState, useEffect, useContext } from "react"
+import { ThemeContext } from '../../App'
 import './PasteModal.css'
-import modal_close from "./modal_close.png"
+import modal_close_white from "./modal_close_white.png"
+import modal_close_black from "./modal_close_black.png"
 
 export const PasteModal = ({ pasteDetail, setPasteDetail }) => {
     const [paste, setPaste] = useState([])
     console.log(pasteDetail)
+    const theme = useContext(ThemeContext);
+    console.log(theme);
 
     useEffect(() => {
         const getPaste = async (pasteId) => {
@@ -13,7 +17,6 @@ export const PasteModal = ({ pasteDetail, setPasteDetail }) => {
             setPaste(data)
         }
         getPaste(pasteDetail)
-
     }, [pasteDetail])
 
     const handleClose = () => {
@@ -25,26 +28,13 @@ export const PasteModal = ({ pasteDetail, setPasteDetail }) => {
         <div className="modal">
             <div className="modal__wrapper">
                 <div onClick={handleClose} className="modal__cross">
-                    <img className="modal__close" src={modal_close} />
+                    <img className="modal__close" src={theme.theme === "light" ? modal_close_black : modal_close_white} />
                     <div className="modal__color"></div>
                 </div>
                 <h3 className="modal__title">{paste.title}</h3>
                 <div className="modal__content"><span>Privacy: </span><p>{paste.title}</p></div>
                 <div className="modal__content"><span>Deadline: </span><p>{paste.title}</p></div>
-                <div className="modal__content"><span>Paste text: </span><p>Redux is typically used with the React-Redux library for integrating Redux and React together
-                    Redux Toolkit is the recommended way to write Redux logic
-                    Redux uses a "one-way data flow" app structure
-                    State describes the condition of the app at a point in time, and UI renders based on that state
-                    When something happens in the app:
-                    The UI dispatches an action
-                    The store runs the reducers, and the state is updated based on what occurred
-                    The store notifies the UI that the state has changed
-                    edux uses a "one-way data flow" app structure
-                    State describes the condition of the app at a point in time, and UI renders based on that state
-                    When something happens in the app:
-                    The UI dispatches an action
-                    The store runs the reducers, and the state is updated based on what occurred
-                    The store notifies the UI that the state has changed </p></div>
+                <div className="modal__content"><span>Paste text: </span><p>{paste.description}</p></div>
             </div >
             <div className='modal__overlay'></div>
         </div >

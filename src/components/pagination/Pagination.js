@@ -3,10 +3,11 @@ import arrow_right_white from './pagination_right_white.png'
 import arrow_left_black from './pagination_left_black.png'
 import arrow_right_black from './pagination_right_black.png'
 import "./Pagination.css"
-import { useState } from 'react'
+import { useState, useEffect, useContext } from "react"
+import { ThemeContext } from '../../App'
 
-export const Pagination = ({ theme, pastes, pastesPerPage, currentPage, setCurrentPage }) => {
-
+export const Pagination = ({ pastes, pastesPerPage, currentPage, setCurrentPage }) => {
+    const theme = useContext(ThemeContext);  
 
     const pageNumbers = [];
     for (let i = 1; i <= Math.ceil(pastes.length / pastesPerPage); i++) {
@@ -28,15 +29,15 @@ export const Pagination = ({ theme, pastes, pastesPerPage, currentPage, setCurre
     return (
         <div className='pagination'>
             <button className='pagination__arrow' disabled={currentPage === 1}>
-                <img src={theme === "light" ? arrow_left_black : arrow_left_white} onClick={handleMinus} />
+                <img src={theme.theme === "light" ? arrow_left_black : arrow_left_white} onClick={handleMinus} />
             </button>
             <div className='pagination__numbers'>
                 {pageNumbers.map((number) => (
-                    <p onClick={handleClick}>{number}</p>
+                    <p onClick={handleClick} id={number} style={{"color": currentPage === number ? "#7a00dd66" : "black"}}>{number}</p>
                 ))}
             </div>
             <button className='pagination__arrow' disabled={currentPage === Math.ceil(pastes / pastesPerPage)}>
-                <img src={theme === "light" ? arrow_right_black : arrow_right_white} onClick={handlePlus} />
+                <img src={theme.theme === "light" ? arrow_right_black : arrow_right_white} onClick={handlePlus} />
             </button>
         </div>
     )
