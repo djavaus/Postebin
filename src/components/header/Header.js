@@ -6,6 +6,7 @@ import logo_black from './logo_black.png'
 import { NavLink } from 'react-router-dom'
 import Cookies from 'js-cookie'
 import { useDispatch } from 'react-redux'
+import { BurgerMenu } from '../menu/BurgerMenu'
 
 export const Header = ({ setToken}) => {
 const theme = useContext(ThemeContext);   
@@ -33,6 +34,7 @@ const theme = useContext(ThemeContext);
                         <NavLink to='/acc' className='header__btn'>Your pastes</NavLink>
                         <NavLink to='/'><button type='submit' className='header__btn header__btn-logout' onClick={handleClick}>Log out</button></NavLink>
                     </nav>
+                    <BurgerMenu />
                 </div>
             </div>
         </header>

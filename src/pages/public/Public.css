@@ -52,10 +52,7 @@
     text-overflow: ellipsis;
     white-space: nowrap;
   }
-  
-  .public__line-btn:hover {
-    cursor: pointer;
-  }
+
   
   .public__line-title {
     padding-right: 20px;
@@ -70,3 +67,10 @@
   .public__lines:nth-child(even) {
     background: #3a3a3a38;
   }
+
+  
+@media (min-width: 850px) {
+  .public__head p {
+      font-size: 16px;
+  }
+}
